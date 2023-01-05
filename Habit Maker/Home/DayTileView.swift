@@ -19,23 +19,26 @@ struct DayTileView: View {
                 VStack {
                     Text(dayModel.dayOfWeek.uppercased())
                         .font(.caption)
+                        .foregroundColor(.black)
                         .if(isSelected) {
                             $0.bold()
                         }
                     Text("\(dayModel.dayOfMonth)")
                         .font(.caption)
+                        .foregroundColor(.black)
                         .if(isSelected) {
                             $0.bold()
                         }
                 }
             })
-            Circle()
-                .stroke(
-                    Color.yellow.opacity(0.5),
-                    lineWidth: 8
-                )
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+
+            CircularProgressView(
+                color: .green,
+                lineWidth: 6,
+                progress: 0.6
+            )
         }
-        .frame(width: 65, height: 85)
     }
 }
 

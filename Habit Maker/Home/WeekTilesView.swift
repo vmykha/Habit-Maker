@@ -19,17 +19,17 @@ struct WeekTilesView: View {
     ]
 
     var rows: [GridItem] = [
-        GridItem(.fixed(85))
+        GridItem(.fixed(60))
     ]
 
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
-            LazyHGrid(rows: rows) {
+            LazyHGrid(rows: rows, spacing: 16) {
                 ForEach(items) {
                     DayTileView(dayModel: $0, isSelected: .constant(false))
                 }
             }
-            .frame(maxHeight: 85)
+            .frame(maxHeight: 84)
             .padding(.horizontal)
         }
     }
