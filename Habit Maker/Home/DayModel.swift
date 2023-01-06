@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct DayModel: Identifiable {
+struct DayModel: Identifiable, Equatable {
     var id = UUID()
     let dayOfWeek: String
     let dayOfMonth: Int

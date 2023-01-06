@@ -9,12 +9,16 @@ import SwiftUI
 
 struct DayTileView: View {
     let dayModel: DayModel
-    @Binding var isSelected: Bool
+    @Binding var selectedItem: DayModel?
+
+    private var isSelected: Bool {
+        selectedItem == dayModel
+    }
     
     var body: some View {
         ZStack {
             Button(action: {
-                print("++++++")
+                selectedItem = dayModel
             }, label: {
                 VStack {
                     Text(dayModel.dayOfWeek.uppercased())
@@ -44,6 +48,9 @@ struct DayTileView: View {
 
 struct DayTileView_Previews: PreviewProvider {
     static var previews: some View {
-        DayTileView(dayModel: .init(dayOfWeek: "Wed", dayOfMonth: 13), isSelected: .constant(true))
+        DayTileView(
+            dayModel: .init(dayOfWeek: "Wed", dayOfMonth: 13),
+            selectedItem: .constant(.init(dayOfWeek: "Wed", dayOfMonth: 13))
+        )
     }
 }

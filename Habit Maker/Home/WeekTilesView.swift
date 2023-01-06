@@ -22,11 +22,13 @@ struct WeekTilesView: View {
         GridItem(.fixed(60))
     ]
 
+    @State var selectedModel: DayModel?
+
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             LazyHGrid(rows: rows, spacing: 16) {
                 ForEach(items) {
-                    DayTileView(dayModel: $0, isSelected: .constant(false))
+                    DayTileView(dayModel: $0, selectedItem: $selectedModel)
                 }
             }
             .frame(maxHeight: 84)
