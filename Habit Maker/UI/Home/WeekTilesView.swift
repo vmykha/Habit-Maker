@@ -26,13 +26,18 @@ struct WeekTilesView: View {
 
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
-            LazyHGrid(rows: rows, spacing: 16) {
-                ForEach(items) {
-                    DayTileView(dayModel: $0, selectedItem: $selectedModel)
-                }
+            dayTilesGrid
+                .padding()
+        }
+    }
+
+    // MARK: - Views
+
+    private var dayTilesGrid: some View {
+        LazyHGrid(rows: rows, spacing: 16) {
+            ForEach(items) {
+                DayTileView(dayModel: $0, selectedItem: $selectedModel)
             }
-            .frame(maxHeight: 84)
-            .padding(.horizontal)
         }
     }
 }

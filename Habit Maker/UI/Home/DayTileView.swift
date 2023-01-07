@@ -35,7 +35,6 @@ struct DayTileView: View {
                         }
                 }
             })
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
 
             CircularProgressView(
                 color: .green,
