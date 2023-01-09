@@ -35,7 +35,6 @@ struct DayTileView: View {
                         }
                 }
             })
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
 
             CircularProgressView(
                 color: .green,
@@ -46,6 +45,7 @@ struct DayTileView: View {
     }
 }
 
+#if DEBUG
 struct DayTileView_Previews: PreviewProvider {
     static var previews: some View {
         DayTileView(
@@ -54,3 +54,4 @@ struct DayTileView_Previews: PreviewProvider {
         )
     }
 }
+#endif
