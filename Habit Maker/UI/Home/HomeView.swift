@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct HomeView: View {
-    let columns = [GridItem(.flexible())]
+    @ObservedObject private(set) var viewModel: HomeViewModel
     @State var progress: CGFloat = 0.1
+    let columns = [GridItem(.flexible())]
+
 
     var body: some View {
         GeometryReader { geometry in
@@ -17,6 +19,8 @@ struct HomeView: View {
                 contentView(geometry: geometry)
                     .navigationTitle("Today")
             }
+        }.onAppear {
+            viewModel.setup()
         }
     }
 
@@ -25,7 +29,7 @@ struct HomeView: View {
     private func contentView(geometry: GeometryProxy) -> some View {
         ScrollView {
             VStack(spacing: 16) {
-                WeekTilesView()
+                WeekTilesView(items: $viewModel.weekDays)
                 let size = geometry.size.width * 0.3
                 progressView
                     .frame(width: size, height: size)
@@ -38,7 +42,7 @@ struct HomeView: View {
 
     private var progressView: some View {
         ZStack {
-            Text("10%")
+            Text("\(Int(viewModel.dailyProgress * 100))%")
                 .font(.largeTitle)
                 .bold()
                 .lineLimit(1)
@@ -48,18 +52,18 @@ struct HomeView: View {
             CircularProgressView(
                 color: .red,
                 lineWidth: 12,
-                progress: 0.4
+                progress: viewModel.dailyProgress
             )
         }
     }
 
     private func dayTilesGrid(geometry: GeometryProxy) -> some View {
         LazyVGrid(columns: columns, spacing: 16) {
-            ForEach(1..<10) {_ in
-                HabitRow(color: .red, progress: $progress)
+            ForEach($viewModel.habits) {
+                HabitRow(habit: $0)
                     .cornerRadius(12)
                     .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
-
+                    .environmentObject(viewModel)
             }
         }.padding()
     }
@@ -67,6 +71,6 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView(viewModel: .init())
     }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LinearProgressView: View {
     let color: Color
-    @Binding var progress: CGFloat
+    @Binding var progress: Double
 
     var body: some View {
         GeometryReader { geometry in

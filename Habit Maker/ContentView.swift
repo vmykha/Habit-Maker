@@ -9,7 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        HomeView()
+        // TODO: Add DI
+        HomeView(viewModel: HomeViewModel())
     }
 }
 

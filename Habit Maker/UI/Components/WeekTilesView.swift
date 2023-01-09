@@ -8,21 +8,16 @@
 import SwiftUI
 
 struct WeekTilesView: View {
-    let items = [
-        DayModel(dayOfWeek: "Mon", dayOfMonth: 12),
-        DayModel(dayOfWeek: "Tue", dayOfMonth: 13),
-        DayModel(dayOfWeek: "Wed", dayOfMonth: 14),
-        DayModel(dayOfWeek: "Thu", dayOfMonth: 15),
-        DayModel(dayOfWeek: "Fri", dayOfMonth: 16),
-        DayModel(dayOfWeek: "Sat", dayOfMonth: 17),
-        DayModel(dayOfWeek: "Sun", dayOfMonth: 18),
-    ]
-
-    var rows: [GridItem] = [
+    @Binding var items: [DayModel]
+    @State var selectedModel: DayModel?
+    private var rows: [GridItem] = [
         GridItem(.fixed(60))
     ]
 
-    @State var selectedModel: DayModel?
+    init(items: Binding<[DayModel]>) {
+        self._items = items
+
+    }
 
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
@@ -42,8 +37,18 @@ struct WeekTilesView: View {
     }
 }
 
+#if DEBUG
 struct WeekTilesView_Previews: PreviewProvider {
     static var previews: some View {
-        WeekTilesView()
+        WeekTilesView(items: .constant( [
+            DayModel(dayOfWeek: "Mon", dayOfMonth: 12),
+            DayModel(dayOfWeek: "Tue", dayOfMonth: 13),
+            DayModel(dayOfWeek: "Wed", dayOfMonth: 14),
+            DayModel(dayOfWeek: "Thu", dayOfMonth: 15),
+            DayModel(dayOfWeek: "Fri", dayOfMonth: 16),
+            DayModel(dayOfWeek: "Sat", dayOfMonth: 17),
+            DayModel(dayOfWeek: "Sun", dayOfMonth: 18)
+        ]))
     }
 }
+#endif
