@@ -113,6 +113,7 @@
 			children = (
 				6AF9CBC72965F52F00A9B431 /* HomeView.swift */,
 				6AF9CBCA2965F60900A9B431 /* WeekTilesView.swift */,
+				6AD955B029686081007C6EE5 /* HabitRow.swift */,
 				6AF9CBCC2965F78F00A9B431 /* DayTileView.swift */,
 			);
 			path = Home;
@@ -130,7 +131,6 @@
 			isa = PBXGroup;
 			children = (
 				6AF9CBD32966C75600A9B431 /* CircularProgressView.swift */,
-				6AD955B029686081007C6EE5 /* HabitRow.swift */,
 				6AD955B72969C8EF007C6EE5 /* LinearProgressView.swift */,
 				6AD955B92969D198007C6EE5 /* CurvedSideRectangle.swift */,
 			);

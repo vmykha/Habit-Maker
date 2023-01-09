@@ -16,7 +16,7 @@ struct CircularProgressView: View {
         ZStack {
             Circle()
                 .stroke(
-                    color.opacity(0.5),
+                    color.opacity(0.3),
                     lineWidth: lineWidth
                 )
 
@@ -35,6 +35,7 @@ struct CircularProgressView: View {
     }
 }
 
+#if DEBUG
 struct CircularProgressView_Previews: PreviewProvider {
     static var previews: some View {
         CircularProgressView(
@@ -44,3 +45,4 @@ struct CircularProgressView_Previews: PreviewProvider {
         )
     }
 }
+#endif

@@ -45,6 +45,7 @@ struct DayTileView: View {
     }
 }
 
+#if DEBUG
 struct DayTileView_Previews: PreviewProvider {
     static var previews: some View {
         DayTileView(
@@ -53,3 +54,4 @@ struct DayTileView_Previews: PreviewProvider {
         )
     }
 }
+#endif

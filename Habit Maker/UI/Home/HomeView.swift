@@ -56,7 +56,7 @@ struct HomeView: View {
     private func dayTilesGrid(geometry: GeometryProxy) -> some View {
         LazyVGrid(columns: columns, spacing: 16) {
             ForEach(1..<10) {_ in
-                HabitRow(color: .red.opacity(0.5), progress: $progress)
+                HabitRow(color: .red, progress: $progress)
                     .cornerRadius(12)
                     .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
 

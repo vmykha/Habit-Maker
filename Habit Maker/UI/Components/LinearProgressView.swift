@@ -16,7 +16,7 @@ struct LinearProgressView: View {
             ZStack(alignment: .leading) {
                 Rectangle()
                     .frame(width: geometry.size.width, height: geometry.size.height)
-                    .foregroundColor(.white)
+                    .foregroundColor(.clear)
 
                 CurvedSideRectangle(progress: $progress)
                     .frame(
