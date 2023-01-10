@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CurvedSideRectangle: Shape {
-    @Binding var progress: CGFloat
+    @Binding var progress: Double
 
     func path(in rect: CGRect) -> Path {
         let curveCoefficient = rect.width * 0.2 * abs(progress - 1)

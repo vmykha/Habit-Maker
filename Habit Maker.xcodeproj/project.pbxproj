@@ -15,6 +15,8 @@
 		6AD955B329686CD3007C6EE5 /* HabitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD955B229686CD3007C6EE5 /* HabitModel.swift */; };
 		6AD955B82969C8EF007C6EE5 /* LinearProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD955B72969C8EF007C6EE5 /* LinearProgressView.swift */; };
 		6AD955BA2969D198007C6EE5 /* CurvedSideRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD955B92969D198007C6EE5 /* CurvedSideRectangle.swift */; };
+		6AD955BC296C6DF8007C6EE5 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD955BB296C6DF8007C6EE5 /* HomeViewModel.swift */; };
+		6AD955BF296C716D007C6EE5 /* WeekdaysUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD955BE296C716D007C6EE5 /* WeekdaysUseCase.swift */; };
 		6AF9CBC82965F52F00A9B431 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF9CBC72965F52F00A9B431 /* HomeView.swift */; };
 		6AF9CBCB2965F60A00A9B431 /* WeekTilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF9CBCA2965F60900A9B431 /* WeekTilesView.swift */; };
 		6AF9CBCD2965F78F00A9B431 /* DayTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF9CBCC2965F78F00A9B431 /* DayTileView.swift */; };
@@ -33,6 +35,8 @@
 		6AD955B229686CD3007C6EE5 /* HabitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitModel.swift; sourceTree = "<group>"; };
 		6AD955B72969C8EF007C6EE5 /* LinearProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinearProgressView.swift; sourceTree = "<group>"; };
 		6AD955B92969D198007C6EE5 /* CurvedSideRectangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurvedSideRectangle.swift; sourceTree = "<group>"; };
+		6AD955BB296C6DF8007C6EE5 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		6AD955BE296C716D007C6EE5 /* WeekdaysUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdaysUseCase.swift; sourceTree = "<group>"; };
 		6AF9CBC72965F52F00A9B431 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		6AF9CBCA2965F60900A9B431 /* WeekTilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekTilesView.swift; sourceTree = "<group>"; };
 		6AF9CBCC2965F78F00A9B431 /* DayTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTileView.swift; sourceTree = "<group>"; };
@@ -78,6 +82,7 @@
 				6ACF5CC42874658400AFE239 /* Assets.xcassets */,
 				6ACF5CC62874658400AFE239 /* Preview Content */,
 				6AD955AE2968495C007C6EE5 /* UI */,
+				6AD955BD296C712B007C6EE5 /* UseCases */,
 			);
 			path = "Habit Maker";
 			sourceTree = "<group>";
@@ -108,13 +113,19 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		6AD955BD296C712B007C6EE5 /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				6AD955BE296C716D007C6EE5 /* WeekdaysUseCase.swift */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
 		6AF9CBC92965F53F00A9B431 /* Home */ = {
 			isa = PBXGroup;
 			children = (
 				6AF9CBC72965F52F00A9B431 /* HomeView.swift */,
-				6AF9CBCA2965F60900A9B431 /* WeekTilesView.swift */,
-				6AD955B029686081007C6EE5 /* HabitRow.swift */,
-				6AF9CBCC2965F78F00A9B431 /* DayTileView.swift */,
+				6AD955BB296C6DF8007C6EE5 /* HomeViewModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -132,6 +143,9 @@
 			children = (
 				6AF9CBD32966C75600A9B431 /* CircularProgressView.swift */,
 				6AD955B72969C8EF007C6EE5 /* LinearProgressView.swift */,
+				6AF9CBCA2965F60900A9B431 /* WeekTilesView.swift */,
+				6AD955B029686081007C6EE5 /* HabitRow.swift */,
+				6AF9CBCC2965F78F00A9B431 /* DayTileView.swift */,
 				6AD955B92969D198007C6EE5 /* CurvedSideRectangle.swift */,
 			);
 			path = Components;
@@ -207,6 +221,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6AD955BF296C716D007C6EE5 /* WeekdaysUseCase.swift in Sources */,
 				6AD955B329686CD3007C6EE5 /* HabitModel.swift in Sources */,
 				6AD955B129686081007C6EE5 /* HabitRow.swift in Sources */,
 				6AF9CBCF2965FAF100A9B431 /* DayModel.swift in Sources */,
@@ -215,6 +230,7 @@
 				6AF9CBD12965FF6600A9B431 /* View+ConditionalModifier.swift in Sources */,
 				6AF9CBC82965F52F00A9B431 /* HomeView.swift in Sources */,
 				6ACF5CC32874658300AFE239 /* ContentView.swift in Sources */,
+				6AD955BC296C6DF8007C6EE5 /* HomeViewModel.swift in Sources */,
 				6AF9CBCD2965F78F00A9B431 /* DayTileView.swift in Sources */,
 				6AD955B82969C8EF007C6EE5 /* LinearProgressView.swift in Sources */,
 				6ACF5CC12874658300AFE239 /* Habit_MakerApp.swift in Sources */,

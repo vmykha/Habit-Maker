@@ -8,21 +8,21 @@
 import SwiftUI
 
 struct HabitRow: View {
-    let color: Color
-    @Binding var progress: CGFloat
+    @Binding var habit: HabitModel
+    @EnvironmentObject var viewModel: HomeViewModel
 
     var body: some View {
         ZStack {
             LinearProgressView(
-                color: color.opacity(0.3),
-                progress: $progress
+                color: habit.color.opacity(0.3),
+                progress: $habit.progress
             )
             HStack {
                 VStack(alignment: .leading) {
-                    Text("Read")
+                    Text(habit.name)
                         .font(.title2)
                         .bold()
-                    Text("Goal: 1/2")
+                    Text("Goal: \(habit.progressCaption)")
                         .font(.subheadline)
                 }
                 Spacer()
@@ -38,34 +38,42 @@ struct HabitRow: View {
 
     private var completeButton: some View {
         Button(action: {
-            print(#function)
+            viewModel.completeProgress(for: habit)
         }, label: {
             Image(systemName: "checkmark.circle")
                 .resizable()
                 .frame(width: 30, height: 30)
-                .tint(color)
+                .tint(habit.color)
         })
     }
 
     private var undoButton: some View {
         Button(action: {
-            print(#function)
+            viewModel.undoProgress(for: habit)
         }, label: {
             Image(systemName: "arrow.uturn.backward.circle")
                 .resizable()
                 .frame(width: 30, height: 30)
-                .tint(color)
+                .tint(habit.color)
         })
     }
 }
 
 #if DEBUG
 struct HabitRow_Previews: PreviewProvider {
+    static let habit = HabitModel(
+        name: "Read",
+        unit: .duration,
+        goal: 20,
+        completed: 10,
+        color: .red
+    )
     static var previews: some View {
-        HabitRow(color: .red, progress: .constant(0.1))
+        HabitRow(habit: .constant(habit))
             .previewLayout(.fixed(width: 400, height: 120))
             .padding()
             .previewDisplayName("Default preview")
+            .environmentObject(HomeViewModel())
     }
 }
 #endif
