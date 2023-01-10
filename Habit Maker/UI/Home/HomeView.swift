@@ -20,7 +20,7 @@ struct HomeView: View {
                     .navigationTitle("Today")
             }
         }.onAppear {
-            viewModel.setup()
+            viewModel.loadData()
         }
     }
 
@@ -29,7 +29,10 @@ struct HomeView: View {
     private func contentView(geometry: GeometryProxy) -> some View {
         ScrollView {
             VStack(spacing: 16) {
-                WeekTilesView(items: $viewModel.weekDays)
+                WeekTilesView(
+                    items: $viewModel.weekDays,
+                    selectedModel: $viewModel.selectedDay
+                )
                 let size = geometry.size.width * 0.3
                 progressView
                     .frame(width: size, height: size)

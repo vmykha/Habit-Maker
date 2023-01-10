@@ -9,6 +9,7 @@ import Foundation
 
 struct DayModel: Identifiable, Equatable {
     var id = UUID()
+    let date: Date
     let dayOfWeek: String
-    let dayOfMonth: Int
+    let dayOfMonth: String
 }

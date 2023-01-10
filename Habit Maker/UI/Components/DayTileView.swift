@@ -49,8 +49,8 @@ struct DayTileView: View {
 struct DayTileView_Previews: PreviewProvider {
     static var previews: some View {
         DayTileView(
-            dayModel: .init(dayOfWeek: "Wed", dayOfMonth: 13),
-            selectedItem: .constant(.init(dayOfWeek: "Wed", dayOfMonth: 13))
+            dayModel: .init(date: .init(), dayOfWeek: "Wed", dayOfMonth: "13"),
+            selectedItem: .constant(.init(date: .init(), dayOfWeek: "Wed", dayOfMonth: "13"))
         )
     }
 }
