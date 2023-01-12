@@ -9,23 +9,21 @@ import Foundation
 import Combine
 
 final class HomeViewModel: ObservableObject {
-    // TODO: Provide DI
-    private let weekdaysUseCase = DefaultWeekdaysUseCase()
+    private let container: DIContainer
+    private var bag = Set<AnyCancellable>()
+
     @Published var weekDays: [DayModel] = []
     @Published var habits: [HabitModel] = []
     @Published var dailyProgress: Double = 0.5
     @Published var selectedDay: DayModel?
 
-    private var bag = Set<AnyCancellable>()
-
-    init() {
-        $habits.sink {
-            self.recalculateDailyProgress(with: $0)
-        }.store(in: &bag)
+    init(container: DIContainer) {
+        self.container = container
+        setupBindings()
     }
 
     func loadData() {
-        weekDays = weekdaysUseCase.loadWeekdays(for: Date())
+        weekDays = container.useCases.weekdaysUseCase.loadWeekdays(for: Date())
         habits = [
             HabitModel(name: "Read", unit: .duration, goal: 20, completed: 12, color: .red),
             HabitModel(name: "Brush teeth", unit: .quantity, goal: 2, completed: 1, color: .green),
@@ -50,6 +48,12 @@ final class HomeViewModel: ObservableObject {
         habits[index].completed = 0
     }
 
+    private func setupBindings() {
+        $habits.sink {
+            self.recalculateDailyProgress(with: $0)
+        }.store(in: &bag)
+    }
+
     private func recalculateDailyProgress(with models: [HabitModel]) {
         guard !models.isEmpty else { return }
 
@@ -61,6 +65,6 @@ final class HomeViewModel: ObservableObject {
     }
 
     private func selectDefaultDate() {
-        selectedDay = weekdaysUseCase.findToday(from: weekDays)
+        selectedDay = container.useCases.weekdaysUseCase.findToday(from: weekDays)
     }
 }

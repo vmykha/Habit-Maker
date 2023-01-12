@@ -73,7 +73,7 @@ struct HabitRow_Previews: PreviewProvider {
             .previewLayout(.fixed(width: 400, height: 120))
             .padding()
             .previewDisplayName("Default preview")
-            .environmentObject(HomeViewModel())
+            .environmentObject(HomeViewModel(container: .stub))
     }
 }
 #endif
