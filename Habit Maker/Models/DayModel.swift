@@ -11,5 +11,6 @@ struct DayModel: Identifiable, Equatable {
     var id = UUID()
     let date: Date
     let dayOfWeek: String
+    let formattedDayOfWeek: String
     let dayOfMonth: String
 }

@@ -15,10 +15,17 @@ protocol WeekdaysUseCase: AnyObject {
 final class DefaultWeekdaysUseCase: WeekdaysUseCase {
     private var calendar = Calendar.current
 
-    private lazy var dayOfWeekDateFormatter: DateFormatter = {
+    private lazy var shortDayOfWeekDateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "en_us")
         formatter.dateFormat = "E"
+        return formatter
+    }()
+
+    private lazy var dayOfWeekDateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "en_us")
+        formatter.dateFormat = "EEEE"
         return formatter
     }()
 
@@ -35,7 +42,8 @@ final class DefaultWeekdaysUseCase: WeekdaysUseCase {
         return weekdays.map {
             DayModel(
                 date: $0,
-                dayOfWeek: dayOfWeekDateFormatter.string(from: $0),
+                dayOfWeek: shortDayOfWeekDateFormatter.string(from: $0),
+                formattedDayOfWeek: formatWeekday($0),
                 dayOfMonth: dayOfMonthDateFormatter.string(from: $0)
             )
         }
@@ -52,5 +60,17 @@ final class DefaultWeekdaysUseCase: WeekdaysUseCase {
         return calendar.range(of: .weekday, in: .weekOfYear, for: today)!.compactMap {
             calendar.date(byAdding: .day, value: $0 - dayOfWeek, to: today)
         }
+    }
+
+    private func formatWeekday(_ date: Date) -> String {
+        if calendar.isDateInToday(date) {
+            return "Today"
+        }
+
+        if calendar.isDateInYesterday(date) {
+            return "Yesterday"
+        }
+
+        return dayOfWeekDateFormatter.string(from: date)
     }
 }

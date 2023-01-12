@@ -9,15 +9,13 @@ import SwiftUI
 
 struct HomeView: View {
     @ObservedObject private(set) var viewModel: HomeViewModel
-    @State var progress: CGFloat = 0.1
     let columns = [GridItem(.flexible())]
-
 
     var body: some View {
         GeometryReader { geometry in
             NavigationView {
                 contentView(geometry: geometry)
-                    .navigationTitle("Today")
+                    .navigationTitle(viewModel.selectedDay?.formattedDayOfWeek ?? "")
             }
         }.onAppear {
             viewModel.loadData()
@@ -32,7 +30,7 @@ struct HomeView: View {
                 WeekTilesView(
                     items: $viewModel.weekDays,
                     selectedModel: $viewModel.selectedDay
-                )
+                ).environmentObject(viewModel)
                 let size = geometry.size.width * 0.3
                 progressView
                     .frame(width: size, height: size)
@@ -72,8 +70,19 @@ struct HomeView: View {
     }
 }
 
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeView(viewModel: .init())
+// MARK: - Assembly
+
+extension HomeView {
+    static func build(container: DIContainer) -> HomeView {
+        let vm = HomeViewModel(container: container)
+        return HomeView(viewModel: vm)
     }
 }
+
+#if DEBUG
+struct HomeView_Previews: PreviewProvider {
+    static var previews: some View {
+        HomeView(viewModel: .init(container: .stub))
+    }
+}
+#endif

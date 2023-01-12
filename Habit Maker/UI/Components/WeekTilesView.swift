@@ -10,6 +10,8 @@ import SwiftUI
 struct WeekTilesView: View {
     @Binding var items: [DayModel]
     @Binding var selectedModel: DayModel?
+    @EnvironmentObject var viewModel: HomeViewModel
+
     private var rows: [GridItem] = [
         GridItem(.fixed(60))
     ]
@@ -20,9 +22,14 @@ struct WeekTilesView: View {
     }
 
     var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            dayTilesGrid
-                .padding()
+        ScrollViewReader { proxy in
+            ScrollView(.horizontal, showsIndicators: false) {
+                dayTilesGrid
+                    .padding()
+            }.onAppear {
+                guard let id = selectedModel?.id else { return }
+                proxy.scrollTo(id, anchor: .center)
+            }
         }
     }
 
@@ -30,8 +37,12 @@ struct WeekTilesView: View {
 
     private var dayTilesGrid: some View {
         LazyHGrid(rows: rows, spacing: 16) {
-            ForEach(items) {
-                DayTileView(dayModel: $0, selectedItem: $selectedModel)
+            ForEach(viewModel.weekDays) {
+                DayTileView(
+                    dayModel: $0,
+                    selectedItem: $selectedModel,
+                    progress: $viewModel.dailyProgress
+                )
             }
         }
     }
@@ -40,14 +51,14 @@ struct WeekTilesView: View {
 #if DEBUG
 struct WeekTilesView_Previews: PreviewProvider {
     static var previews: some View {
-        WeekTilesView(items: .constant( [
-            DayModel(date: .init(), dayOfWeek: "Mon", dayOfMonth: "12"),
-            DayModel(date: .init(), dayOfWeek: "Tue", dayOfMonth: "13"),
-            DayModel(date: .init(), dayOfWeek: "Wed", dayOfMonth: "14"),
-            DayModel(date: .init(), dayOfWeek: "Thu", dayOfMonth: "15"),
-            DayModel(date: .init(), dayOfWeek: "Fri", dayOfMonth: "16"),
-            DayModel(date: .init(), dayOfWeek: "Sat", dayOfMonth: "17"),
-            DayModel(date: .init(), dayOfWeek: "Sun", dayOfMonth: "18")
+        WeekTilesView(items: .constant([
+            DayModel(date: .init(), dayOfWeek: "Mon", formattedDayOfWeek: "", dayOfMonth: "12"),
+            DayModel(date: .init(), dayOfWeek: "Tue", formattedDayOfWeek: "", dayOfMonth: "13"),
+            DayModel(date: .init(), dayOfWeek: "Wed", formattedDayOfWeek: "", dayOfMonth: "14"),
+            DayModel(date: .init(), dayOfWeek: "Thu", formattedDayOfWeek: "", dayOfMonth: "15"),
+            DayModel(date: .init(), dayOfWeek: "Fri", formattedDayOfWeek: "", dayOfMonth: "16"),
+            DayModel(date: .init(), dayOfWeek: "Sat", formattedDayOfWeek: "", dayOfMonth: "17"),
+            DayModel(date: .init(), dayOfWeek: "Sun", formattedDayOfWeek: "", dayOfMonth: "18")
         ]), selectedModel: .constant(nil))
     }
 }

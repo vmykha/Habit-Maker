@@ -10,6 +10,7 @@ import SwiftUI
 struct DayTileView: View {
     let dayModel: DayModel
     @Binding var selectedItem: DayModel?
+    @Binding var progress: Double
 
     private var isSelected: Bool {
         selectedItem == dayModel
@@ -37,10 +38,10 @@ struct DayTileView: View {
             })
 
             CircularProgressView(
-                color: .green,
+                color: isSelected ? .green : .yellow,
                 lineWidth: 6,
-                progress: 0.6
-            )
+                progress: progress
+            ).animation(.easeInOut, value: isSelected)
         }
     }
 }
@@ -49,8 +50,9 @@ struct DayTileView: View {
 struct DayTileView_Previews: PreviewProvider {
     static var previews: some View {
         DayTileView(
-            dayModel: .init(date: .init(), dayOfWeek: "Wed", dayOfMonth: "13"),
-            selectedItem: .constant(.init(date: .init(), dayOfWeek: "Wed", dayOfMonth: "13"))
+            dayModel: .init(date: .init(), dayOfWeek: "Wed", formattedDayOfWeek: "", dayOfMonth: "13"),
+            selectedItem: .constant(.init(date: .init(), dayOfWeek: "Wed", formattedDayOfWeek: "", dayOfMonth: "13")),
+            progress: .constant(0.3)
         )
     }
 }

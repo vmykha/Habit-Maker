@@ -9,9 +9,15 @@ import SwiftUI
 
 @main
 struct Habit_MakerApp: App {
+    private let environment: Environment
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(container: environment.container)
         }
+    }
+
+    init() {
+        environment = Environment.bootstrap()
     }
 }
