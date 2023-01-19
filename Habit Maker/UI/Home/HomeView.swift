@@ -60,11 +60,16 @@ struct HomeView: View {
 
     private func dayTilesGrid(geometry: GeometryProxy) -> some View {
         LazyVGrid(columns: columns, spacing: 16) {
-            ForEach($viewModel.habits) {
-                HabitRow(habit: $0)
-                    .cornerRadius(12)
-                    .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
-                    .environmentObject(viewModel)
+            ForEach(viewModel.habits) {
+                HabitRow(
+                    store: .init(
+                        initialState: .init(habitModel: $0, completed: 1),
+                        reducer: HabitRowDomain()
+                    )
+                )
+                .cornerRadius(12)
+                .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
+                .environmentObject(viewModel)
             }
         }.padding()
     }
