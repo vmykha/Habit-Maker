@@ -25,27 +25,13 @@ final class HomeViewModel: ObservableObject {
     func loadData() {
         weekDays = container.useCases.weekdaysUseCase.loadWeekdays(for: Date())
         habits = [
-            HabitModel(name: "Read", unit: .duration, goal: 20, completed: 12, color: .red),
-            HabitModel(name: "Brush teeth", unit: .quantity, goal: 2, completed: 1, color: .green),
-            HabitModel(name: "Learning", unit: .duration, goal: 60, completed: 15, color: .blue),
-            HabitModel(name: "Drink water", unit: .quantity, goal: 4, completed: 1, color: .orange),
-            HabitModel(name: "Workout", unit: .duration, goal: 20, completed: 12, color: .purple)
+            HabitModel(name: "Read", unit: .duration, goal: 20, color: .red),
+            HabitModel(name: "Brush teeth", unit: .quantity, goal: 2, color: .green),
+            HabitModel(name: "Learning", unit: .duration, goal: 60, color: .blue),
+            HabitModel(name: "Drink water", unit: .quantity, goal: 4, color: .orange),
+            HabitModel(name: "Workout", unit: .duration, goal: 20, color: .purple)
         ]
         selectDefaultDate()
-    }
-
-    func completeProgress(for habit: HabitModel) {
-        guard let index = habits.firstIndex(of: habit) else {
-            return
-        }
-        habits[index].completed = habits[index].goal
-    }
-
-    func undoProgress(for habit: HabitModel) {
-        guard let index = habits.firstIndex(of: habit) else {
-            return
-        }
-        habits[index].completed = 0
     }
 
     private func setupBindings() {
@@ -55,13 +41,14 @@ final class HomeViewModel: ObservableObject {
     }
 
     private func recalculateDailyProgress(with models: [HabitModel]) {
-        guard !models.isEmpty else { return }
-
-        let sum = models
-            .compactMap { $0.progress }
-            .reduce(0, +)
-
-        dailyProgress = Double(sum) / Double(models.count)
+        // TODO: apply the logic within TCA
+//        guard !models.isEmpty else { return }
+//
+//        let sum = models
+//            .compactMap { $0.progress }
+//            .reduce(0, +)
+//
+//        dailyProgress = Double(sum) / Double(models.count)
     }
 
     private func selectDefaultDate() {
