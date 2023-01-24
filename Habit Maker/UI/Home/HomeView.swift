@@ -6,33 +6,39 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 struct HomeView: View {
-    @ObservedObject private(set) var viewModel: HomeViewModel
-    let columns = [GridItem(.flexible())]
+    let store: StoreOf<HomeViewDomain>
+
+    private let columns = [GridItem(.flexible())]
 
     var body: some View {
-        GeometryReader { geometry in
-            NavigationView {
-                contentView(geometry: geometry)
-                    .navigationTitle(viewModel.selectedDay?.formattedDayOfWeek ?? "")
+        WithViewStore(self.store, observe: { $0 }) { viewStore in
+            GeometryReader { geometry in
+                NavigationView {
+                    contentView(geometry: geometry, state: viewStore.state)
+                        .navigationTitle(viewStore.weekTiles.formattedSelectedDayOfWeek)
+                }
+            }.onAppear {
+                viewStore.send(.loadData)
             }
-        }.onAppear {
-            viewModel.loadData()
         }
     }
 
     // MARK: - Views
 
-    private func contentView(geometry: GeometryProxy) -> some View {
+    private func contentView(geometry: GeometryProxy, state: HomeViewDomain.State) -> some View {
         ScrollView {
             VStack(spacing: 16) {
                 WeekTilesView(
-                    items: $viewModel.weekDays,
-                    selectedModel: $viewModel.selectedDay
-                ).environmentObject(viewModel)
+                    store: store.scope(
+                        state: \.weekTiles,
+                        action: HomeViewDomain.Action.weekTiles(action:)
+                    )
+                )
                 let size = geometry.size.width * 0.3
-                progressView
+                progressView(state: state)
                     .frame(width: size, height: size)
                     .frame(maxWidth: .infinity, alignment: .center)
 
@@ -41,9 +47,9 @@ struct HomeView: View {
         }
     }
 
-    private var progressView: some View {
+    private func progressView(state: HomeViewDomain.State) -> some View {
         ZStack {
-            Text("\(Int(viewModel.dailyProgress * 100))%")
+            Text("\(Int(state.dailyProgress * 100))%")
                 .font(.largeTitle)
                 .bold()
                 .lineLimit(1)
@@ -53,41 +59,36 @@ struct HomeView: View {
             CircularProgressView(
                 color: .red,
                 lineWidth: 12,
-                progress: viewModel.dailyProgress
+                progress: state.dailyProgress
             )
         }
     }
 
     private func dayTilesGrid(geometry: GeometryProxy) -> some View {
         LazyVGrid(columns: columns, spacing: 16) {
-            ForEach(viewModel.habits) {
-                HabitRow(
-                    store: .init(
-                        initialState: .init(habitModel: $0, completed: 1),
-                        reducer: HabitRowDomain()
-                    )
+            ForEachStore(
+                self.store.scope(
+                    state: \.habits,
+                    action: HomeViewDomain.Action.habit(id:action:)
                 )
-                .cornerRadius(12)
-                .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
-                .environmentObject(viewModel)
+            ) {
+                HabitRow(store: $0)
+                    .cornerRadius(12)
+                    .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
             }
         }.padding()
-    }
-}
-
-// MARK: - Assembly
-
-extension HomeView {
-    static func build(container: DIContainer) -> HomeView {
-        let vm = HomeViewModel(container: container)
-        return HomeView(viewModel: vm)
     }
 }
 
 #if DEBUG
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(viewModel: .init(container: .stub))
+        HomeView(
+            store: .init(
+                initialState: HomeViewDomain.State(weekTiles: .init()),
+                reducer: HomeViewDomain()
+            )
+        )
     }
 }
 #endif

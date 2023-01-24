@@ -8,19 +8,20 @@
 import SwiftUI
 
 struct ContentView: View {
-    private let container: DIContainer
-
     var body: some View {
-        HomeView.build(container: container)
-    }
-
-    init(container: DIContainer) {
-        self.container = container
+        HomeView(
+            store: .init(
+                initialState: HomeViewDomain.State(
+                    weekTiles: .init()
+                ),
+                reducer: HomeViewDomain()
+            )
+        )
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(container: .stub)
+        ContentView()
     }
 }

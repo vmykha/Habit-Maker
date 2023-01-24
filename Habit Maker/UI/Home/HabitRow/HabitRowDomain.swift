@@ -9,12 +9,17 @@ import SwiftUI
 import ComposableArchitecture
 
 struct HabitRowDomain: ReducerProtocol {
-    struct State: Equatable {
+    struct State: Equatable, Identifiable {
+        let id: UUID
         let habitModel: HabitModel
         var completed: Int
 
         var progress: Double {
             Double(completed) / Double(habitModel.goal)
+        }
+
+        var isCompleted: Bool {
+            completed >= habitModel.goal
         }
 
         var progressCaption: String {
@@ -32,18 +37,14 @@ struct HabitRowDomain: ReducerProtocol {
         case didTapResetButton
     }
 
-    struct Environment {
-
-    }
-
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
         switch action {
         case .didTapCompleteButton:
             state.completed = state.habitModel.goal
-            return Effect.none
+            return .none
         case .didTapResetButton:
             state.completed = 0
-            return Effect.none
+            return .none
         }
     }
 }

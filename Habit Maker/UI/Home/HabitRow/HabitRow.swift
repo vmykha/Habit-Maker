@@ -63,14 +63,13 @@ struct HabitRow_Previews: PreviewProvider {
     static var previews: some View {
         HabitRow(
             store: .init(
-                initialState: .init(habitModel: habit, completed: 12),
+                initialState: .init(id: UUID(), habitModel: habit, completed: 12),
                 reducer: HabitRowDomain()
             )
         )
         .previewLayout(.fixed(width: 400, height: 120))
         .padding()
         .previewDisplayName("Default preview")
-        .environmentObject(HomeViewModel(container: .stub))
     }
 }
 #endif

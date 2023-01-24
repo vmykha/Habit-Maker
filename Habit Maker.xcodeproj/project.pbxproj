@@ -9,8 +9,9 @@
 /* Begin PBXBuildFile section */
 		6A052ADC2977140F00DBCEC5 /* HabitRowDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A052ADB2977140F00DBCEC5 /* HabitRowDomain.swift */; };
 		6A052AE12979686B00DBCEC5 /* HabitActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A052AE02979686B00DBCEC5 /* HabitActionButton.swift */; };
-		6A3FB9552970339E009C2AA6 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3FB9542970339E009C2AA6 /* Environment.swift */; };
-		6A3FB9572970349F009C2AA6 /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3FB9562970349F009C2AA6 /* DIContainer.swift */; };
+		6AA900DE297E7E0400706362 /* HomeViewDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA900DD297E7E0400706362 /* HomeViewDomain.swift */; };
+		6AA900E1297EBDAA00706362 /* WeekTilesViewDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA900E0297EBDAA00706362 /* WeekTilesViewDomain.swift */; };
+		6AA900E7297ECF6E00706362 /* DayTileViewDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA900E6297ECF6E00706362 /* DayTileViewDomain.swift */; };
 		6ACB14B22975BA9D00E1F6CD /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 6ACB14B12975BA9D00E1F6CD /* ComposableArchitecture */; };
 		6ACF5CC12874658300AFE239 /* Habit_MakerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACF5CC02874658300AFE239 /* Habit_MakerApp.swift */; };
 		6ACF5CC32874658300AFE239 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACF5CC22874658300AFE239 /* ContentView.swift */; };
@@ -20,8 +21,7 @@
 		6AD955B329686CD3007C6EE5 /* HabitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD955B229686CD3007C6EE5 /* HabitModel.swift */; };
 		6AD955B82969C8EF007C6EE5 /* LinearProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD955B72969C8EF007C6EE5 /* LinearProgressView.swift */; };
 		6AD955BA2969D198007C6EE5 /* CurvedSideRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD955B92969D198007C6EE5 /* CurvedSideRectangle.swift */; };
-		6AD955BC296C6DF8007C6EE5 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD955BB296C6DF8007C6EE5 /* HomeViewModel.swift */; };
-		6AD955BF296C716D007C6EE5 /* WeekdaysUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD955BE296C716D007C6EE5 /* WeekdaysUseCase.swift */; };
+		6AD955BF296C716D007C6EE5 /* WeekdaysClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD955BE296C716D007C6EE5 /* WeekdaysClient.swift */; };
 		6AF9CBC82965F52F00A9B431 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF9CBC72965F52F00A9B431 /* HomeView.swift */; };
 		6AF9CBCB2965F60A00A9B431 /* WeekTilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF9CBCA2965F60900A9B431 /* WeekTilesView.swift */; };
 		6AF9CBCD2965F78F00A9B431 /* DayTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF9CBCC2965F78F00A9B431 /* DayTileView.swift */; };
@@ -33,8 +33,9 @@
 /* Begin PBXFileReference section */
 		6A052ADB2977140F00DBCEC5 /* HabitRowDomain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitRowDomain.swift; sourceTree = "<group>"; };
 		6A052AE02979686B00DBCEC5 /* HabitActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitActionButton.swift; sourceTree = "<group>"; };
-		6A3FB9542970339E009C2AA6 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
-		6A3FB9562970349F009C2AA6 /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
+		6AA900DD297E7E0400706362 /* HomeViewDomain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewDomain.swift; sourceTree = "<group>"; };
+		6AA900E0297EBDAA00706362 /* WeekTilesViewDomain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekTilesViewDomain.swift; sourceTree = "<group>"; };
+		6AA900E6297ECF6E00706362 /* DayTileViewDomain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTileViewDomain.swift; sourceTree = "<group>"; };
 		6ACF5CBD2874658300AFE239 /* Habit Maker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Habit Maker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6ACF5CC02874658300AFE239 /* Habit_MakerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit_MakerApp.swift; sourceTree = "<group>"; };
 		6ACF5CC22874658300AFE239 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -44,8 +45,7 @@
 		6AD955B229686CD3007C6EE5 /* HabitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitModel.swift; sourceTree = "<group>"; };
 		6AD955B72969C8EF007C6EE5 /* LinearProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinearProgressView.swift; sourceTree = "<group>"; };
 		6AD955B92969D198007C6EE5 /* CurvedSideRectangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurvedSideRectangle.swift; sourceTree = "<group>"; };
-		6AD955BB296C6DF8007C6EE5 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		6AD955BE296C716D007C6EE5 /* WeekdaysUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdaysUseCase.swift; sourceTree = "<group>"; };
+		6AD955BE296C716D007C6EE5 /* WeekdaysClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdaysClient.swift; sourceTree = "<group>"; };
 		6AF9CBC72965F52F00A9B431 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		6AF9CBCA2965F60900A9B431 /* WeekTilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekTilesView.swift; sourceTree = "<group>"; };
 		6AF9CBCC2965F78F00A9B431 /* DayTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTileView.swift; sourceTree = "<group>"; };
@@ -76,12 +76,22 @@
 			path = HabitRow;
 			sourceTree = "<group>";
 		};
-		6A3FB95329703368009C2AA6 /* DI */ = {
+		6AA900DF297EBD9C00706362 /* WeekTilesView */ = {
 			isa = PBXGroup;
 			children = (
-				6A3FB9562970349F009C2AA6 /* DIContainer.swift */,
+				6AF9CBCA2965F60900A9B431 /* WeekTilesView.swift */,
+				6AA900E0297EBDAA00706362 /* WeekTilesViewDomain.swift */,
 			);
-			path = DI;
+			path = WeekTilesView;
+			sourceTree = "<group>";
+		};
+		6AA900E5297ECF6100706362 /* DayTileView */ = {
+			isa = PBXGroup;
+			children = (
+				6AF9CBCC2965F78F00A9B431 /* DayTileView.swift */,
+				6AA900E6297ECF6E00706362 /* DayTileViewDomain.swift */,
+			);
+			path = DayTileView;
 			sourceTree = "<group>";
 		};
 		6ACF5CB42874658300AFE239 = {
@@ -103,13 +113,12 @@
 		6ACF5CBF2874658300AFE239 /* Habit Maker */ = {
 			isa = PBXGroup;
 			children = (
-				6A3FB95329703368009C2AA6 /* DI */,
 				6AD955C2296DC77D007C6EE5 /* Resources */,
 				6AD955AF2968498C007C6EE5 /* Models */,
 				6AD955C3296DC7E2007C6EE5 /* System */,
 				6AF9CBD22966003300A9B431 /* Extension */,
 				6AD955AE2968495C007C6EE5 /* UI */,
-				6AD955BD296C712B007C6EE5 /* UseCases */,
+				6AD955BD296C712B007C6EE5 /* Clients */,
 			);
 			path = "Habit Maker";
 			sourceTree = "<group>";
@@ -133,12 +142,12 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		6AD955BD296C712B007C6EE5 /* UseCases */ = {
+		6AD955BD296C712B007C6EE5 /* Clients */ = {
 			isa = PBXGroup;
 			children = (
-				6AD955BE296C716D007C6EE5 /* WeekdaysUseCase.swift */,
+				6AD955BE296C716D007C6EE5 /* WeekdaysClient.swift */,
 			);
-			path = UseCases;
+			path = Clients;
 			sourceTree = "<group>";
 		};
 		6AD955C2296DC77D007C6EE5 /* Resources */ = {
@@ -153,7 +162,6 @@
 		6AD955C3296DC7E2007C6EE5 /* System */ = {
 			isa = PBXGroup;
 			children = (
-				6A3FB9542970339E009C2AA6 /* Environment.swift */,
 				6ACF5CC02874658300AFE239 /* Habit_MakerApp.swift */,
 			);
 			path = System;
@@ -162,9 +170,11 @@
 		6AF9CBC92965F53F00A9B431 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				6AA900E5297ECF6100706362 /* DayTileView */,
 				6A052ADA297713F600DBCEC5 /* HabitRow */,
+				6AA900DF297EBD9C00706362 /* WeekTilesView */,
 				6AF9CBC72965F52F00A9B431 /* HomeView.swift */,
-				6AD955BB296C6DF8007C6EE5 /* HomeViewModel.swift */,
+				6AA900DD297E7E0400706362 /* HomeViewDomain.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -182,8 +192,6 @@
 			children = (
 				6AF9CBD32966C75600A9B431 /* CircularProgressView.swift */,
 				6AD955B72969C8EF007C6EE5 /* LinearProgressView.swift */,
-				6AF9CBCA2965F60900A9B431 /* WeekTilesView.swift */,
-				6AF9CBCC2965F78F00A9B431 /* DayTileView.swift */,
 				6AD955B92969D198007C6EE5 /* CurvedSideRectangle.swift */,
 			);
 			path = Components;
@@ -265,22 +273,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6AD955BF296C716D007C6EE5 /* WeekdaysUseCase.swift in Sources */,
+				6AD955BF296C716D007C6EE5 /* WeekdaysClient.swift in Sources */,
+				6AA900DE297E7E0400706362 /* HomeViewDomain.swift in Sources */,
 				6AD955B329686CD3007C6EE5 /* HabitModel.swift in Sources */,
 				6A052AE12979686B00DBCEC5 /* HabitActionButton.swift in Sources */,
 				6AD955B129686081007C6EE5 /* HabitRow.swift in Sources */,
 				6AF9CBCF2965FAF100A9B431 /* DayModel.swift in Sources */,
-				6A3FB9552970339E009C2AA6 /* Environment.swift in Sources */,
 				6AF9CBCB2965F60A00A9B431 /* WeekTilesView.swift in Sources */,
-				6A3FB9572970349F009C2AA6 /* DIContainer.swift in Sources */,
 				6AF9CBD42966C75600A9B431 /* CircularProgressView.swift in Sources */,
 				6AF9CBD12965FF6600A9B431 /* View+ConditionalModifier.swift in Sources */,
 				6AF9CBC82965F52F00A9B431 /* HomeView.swift in Sources */,
 				6ACF5CC32874658300AFE239 /* ContentView.swift in Sources */,
-				6AD955BC296C6DF8007C6EE5 /* HomeViewModel.swift in Sources */,
 				6AF9CBCD2965F78F00A9B431 /* DayTileView.swift in Sources */,
 				6AD955B82969C8EF007C6EE5 /* LinearProgressView.swift in Sources */,
+				6AA900E1297EBDAA00706362 /* WeekTilesViewDomain.swift in Sources */,
 				6ACF5CC12874658300AFE239 /* Habit_MakerApp.swift in Sources */,
+				6AA900E7297ECF6E00706362 /* DayTileViewDomain.swift in Sources */,
 				6A052ADC2977140F00DBCEC5 /* HabitRowDomain.swift in Sources */,
 				6AD955BA2969D198007C6EE5 /* CurvedSideRectangle.swift in Sources */,
 			);
@@ -418,6 +426,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -446,6 +455,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

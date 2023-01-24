@@ -1,18 +1,20 @@
 //
-//  WeekdaysUseCase.swift
+//  WeekdaysClient.swift
 //  Habit Maker
 //
 //  Created by Volodymyr Myhailyuk on 09.01.2023.
 //
 
 import Foundation
+import ComposableArchitecture
 
-protocol WeekdaysUseCase: AnyObject {
+protocol WeekdaysClientProtocol: AnyObject {
     func loadWeekdays(for date: Date) -> [DayModel]
     func findToday(from models: [DayModel]) -> DayModel?
+    func formatWeekday(_ date: Date?) -> String?
 }
 
-final class DefaultWeekdaysUseCase: WeekdaysUseCase {
+final class WeekdaysClient: WeekdaysClientProtocol {
     private var calendar = Calendar.current
 
     private lazy var shortDayOfWeekDateFormatter: DateFormatter = {
@@ -43,7 +45,6 @@ final class DefaultWeekdaysUseCase: WeekdaysUseCase {
             DayModel(
                 date: $0,
                 dayOfWeek: shortDayOfWeekDateFormatter.string(from: $0),
-                formattedDayOfWeek: formatWeekday($0),
                 dayOfMonth: dayOfMonthDateFormatter.string(from: $0)
             )
         }
@@ -62,7 +63,9 @@ final class DefaultWeekdaysUseCase: WeekdaysUseCase {
         }
     }
 
-    private func formatWeekday(_ date: Date) -> String {
+    func formatWeekday(_ date: Date?) -> String? {
+        guard let date else { return nil }
+
         if calendar.isDateInToday(date) {
             return "Today"
         }
@@ -73,4 +76,19 @@ final class DefaultWeekdaysUseCase: WeekdaysUseCase {
 
         return dayOfWeekDateFormatter.string(from: date)
     }
+}
+
+// MARK: – DependencyKey
+
+enum WeekdaysClientKey: DependencyKey {
+    static var liveValue: WeekdaysClientProtocol = WeekdaysClient()
+}
+
+// MARK: – DependencyValues
+
+extension DependencyValues {
+  var weekdaysClient: WeekdaysClientProtocol {
+    get { self[WeekdaysClientKey.self] }
+    set { self[WeekdaysClientKey.self] = newValue }
+  }
 }
